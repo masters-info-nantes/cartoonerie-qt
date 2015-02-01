@@ -2,10 +2,6 @@
 #define PROJECTMANAGER_H
 #include <QVector>
 #include "project.h"
-#include "abstractoperator.h"
-#include "equaloperator.h"
-#include "loweroperator.h"
-#include "greateroperator.h"
 #include <QDir>
 #include <QDomDocument>
 #include <QCoreApplication>
