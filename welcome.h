@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "welcomeaddproject.h"
+
 namespace Ui {
 class Welcome;
 }

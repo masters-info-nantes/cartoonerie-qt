@@ -1,10 +1,10 @@
 #include "project.h"
 
-Project::Project(QString aName, QString aDescription, QString aVersion)
+Project::Project(QString aName, QString aDescription, QString aFile)
 {
     this->name = aName;
     this->description = aDescription;
-    this->version = aVersion;
+    this->file = aFile;
 }
 
 QString Project::getName()
@@ -17,9 +17,9 @@ QString Project::getDescription()
     return this->description;
 }
 
-QString Project::getVersion()
+QString Project::getFile()
 {
-    return this->version;
+    return this->file;
 }
 
 

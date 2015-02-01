@@ -18,17 +18,17 @@ QString name;
 */
 QString description;
 /**
-* @brief Project version
+* @brief Project input file
 */
-QString version;
+QString file;
 public:
 /**
 * @brief Create a new project
 * @param aName project name
 * @param aDescription project description
-* @param aVersion project version
+* @param aFile project input file
 */
-Project(QString aName, QString aDescription, QString aVersion);
+Project(QString aName, QString aDescription, QString aFile);
 /**
 * @brief getName
 * @return project name
@@ -43,6 +43,6 @@ QString getDescription();
 * @brief getVersion
 * @return project version
 */
-QString getVersion();
+QString getFile();
 };
 #endif // PROJECT_H

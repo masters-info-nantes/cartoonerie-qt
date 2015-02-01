@@ -37,9 +37,9 @@ void ProjectManager::addProject(QDir* dir) {
     projectXmlFile.close();
     QDomElement project = doc.documentElement();
     QString name = project.lastChildElement("name").text();
-    QString version = project.lastChildElement("version").text();
     QString description = project.lastChildElement("description").text();
-    Project* p =  new Project(name, description,version);
+    QString file = project.lastChildElement("file").text();
+    Project* p =  new Project(name, description,file);
     qDebug("Project: "+name.toUtf8());
 
     projects->push_back(p);

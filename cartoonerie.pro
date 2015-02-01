@@ -2,18 +2,24 @@ TEMPLATE = app
 TARGET = videowidget
 
 QT += multimedia multimediawidgets
+QT += xml
 
 SOURCES += \
     welcome.cpp \
-    main.cpp
+    project.cpp \
+    projectmanager.cpp \
+    main.cpp \
+    welcomeaddproject.cpp
 
 FORMS += \
-    welcome.ui
+    welcome.ui \
+    welcomeaddproject.ui
 
 HEADERS += \
-    welcome.h
+    welcome.h \
+    project.h \
+    projectmanager.h \
+    welcomeaddproject.h
 
 target.path = $$[QT_INSTALL_EXAMPLES]/multimediawidgets/videowidget
 INSTALLS += target
-
-QT+=widgets
