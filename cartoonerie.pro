@@ -20,6 +20,3 @@ HEADERS += \
     project.h \
     projectmanager.h \
     welcomeaddproject.h
-
-target.path = $$[QT_INSTALL_EXAMPLES]/multimediawidgets/videowidget
-INSTALLS += target

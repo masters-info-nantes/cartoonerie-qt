@@ -89,21 +89,21 @@
      <item row="1" column="0">
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Fichier</string>
+        <string>File name</string>
        </property>
       </widget>
      </item>
      <item row="0" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Nom du projet</string>
+        <string>Project name</string>
        </property>
       </widget>
      </item>
      <item row="1" column="2">
       <widget class="QPushButton" name="fileBtn">
        <property name="text">
-        <string>Chosir</string>
+        <string>Select file</string>
        </property>
       </widget>
      </item>
@@ -113,7 +113,7 @@
      <item row="2" column="0" colspan="3">
       <widget class="QPushButton" name="createProjectBtn">
        <property name="text">
-        <string>Créer le projet</string>
+        <string>Create project</string>
        </property>
       </widget>
      </item>
