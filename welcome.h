@@ -19,6 +19,7 @@ class Welcome : public QWidget
 public:
     QWidget *current;
     QWidget *welcomeHome;
+    void updateList();
     explicit Welcome(QWidget *parent = 0);
     ~Welcome();
 
