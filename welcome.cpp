@@ -10,7 +10,10 @@ Welcome::Welcome(QWidget *parent) :
     ui(new Ui::Welcome)
 {
     ui->setupUi(this);
-    ui->info->addWidget(new WelcomeAddProject);
+    this->current = new WelcomeAddProject;
+    this->welcomeHome = this->current;
+    ui->info->addWidget(this->current);
+
     // Create model
         QStringListModel* model = new QStringListModel(this);
 
@@ -28,10 +31,17 @@ Welcome::Welcome(QWidget *parent) :
 
 void Welcome::selectProject(const QItemSelection& selection) {
     if(selection.indexes().isEmpty()) {
-        ui->info->addWidget(new WelcomeAddProject);
+        ui->info->removeWidget(this->current);
+        this->current->close();
+        this->current = this->welcomeHome;
+        ui->info->addWidget(this->current);
     } else {
         //displayModelIndexInMyView(selection.indexes().first());
-        ui->info->addWidget(new WelcomeProject);
+        ui->info->removeWidget(this->current);
+        this->current->close();
+        this->current = new WelcomeProject;
+        ui->info->addWidget(this->current);
+        this->current->update();
     }
 }
 

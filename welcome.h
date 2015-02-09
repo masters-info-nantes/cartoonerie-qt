@@ -17,6 +17,8 @@ class Welcome : public QWidget
     Q_OBJECT
 
 public:
+    QWidget *current;
+    QWidget *welcomeHome;
     explicit Welcome(QWidget *parent = 0);
     ~Welcome();
 
