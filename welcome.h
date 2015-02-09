@@ -4,6 +4,9 @@
 #include <QWidget>
 
 #include "welcomeaddproject.h"
+#include "welcomeproject.h"
+
+#include <QStringListModel>
 
 namespace Ui {
 class Welcome;
@@ -16,6 +19,9 @@ class Welcome : public QWidget
 public:
     explicit Welcome(QWidget *parent = 0);
     ~Welcome();
+
+public slots:
+     void selectProject(const QItemSelection& selection);
 
 private:
     Ui::Welcome *ui;

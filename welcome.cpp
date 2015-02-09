@@ -11,11 +11,28 @@ Welcome::Welcome(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->info->addWidget(new WelcomeAddProject);
-    QMediaPlayer* player = new QMediaPlayer;
-    player->setMedia(QUrl::fromLocalFile("/Users/Maxime/Downloads/test.mp4"));
-    player->setVolume(50);
-    player->play();
-    //player->setVideoOutput(ui->);
+    // Create model
+        QStringListModel* model = new QStringListModel(this);
+
+        // Make data
+        QStringList List;
+        List << "Clair de Lune" << "Reverie" << "Prelude";
+
+        // Populate our model
+        model->setStringList(List);
+        ui->listView->setModel(model);
+    connect(ui->listView->selectionModel(),
+          SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+          this, SLOT(selectProject(QItemSelection)));
+}
+
+void Welcome::selectProject(const QItemSelection& selection) {
+    if(selection.indexes().isEmpty()) {
+        ui->info->addWidget(new WelcomeAddProject);
+    } else {
+        //displayModelIndexInMyView(selection.indexes().first());
+        ui->info->addWidget(new WelcomeProject);
+    }
 }
 
 Welcome::~Welcome()

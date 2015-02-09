@@ -9,14 +9,17 @@ SOURCES += \
     project.cpp \
     projectmanager.cpp \
     main.cpp \
-    welcomeaddproject.cpp
+    welcomeaddproject.cpp \
+    welcomeproject.cpp
 
 FORMS += \
     welcome.ui \
-    welcomeaddproject.ui
+    welcomeaddproject.ui \
+    welcomeproject.ui
 
 HEADERS += \
     welcome.h \
     project.h \
     projectmanager.h \
-    welcomeaddproject.h
+    welcomeaddproject.h \
+    welcomeproject.h
