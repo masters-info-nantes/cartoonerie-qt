@@ -8,6 +8,7 @@ WelcomeAddProject::WelcomeAddProject(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->fileBtn, SIGNAL(clicked()), this, SLOT(selectFile()));
     connect(ui->createProjectBtn, SIGNAL(clicked()), this, SLOT(createProject()));
+    connect(ui->fpsBtn, SIGNAL(clicked()), this, SLOT(fpsInfo()));
 }
 
 void WelcomeAddProject::selectFile() {
@@ -19,13 +20,21 @@ void WelcomeAddProject::selectFile() {
 
 void WelcomeAddProject::createProject() {
     if(ui->fileName->text() != "" && ui->projectName->text() != "") {
-
+        editor = new Editor();
+        editor->show();
     } else {
         QMessageBox::critical(
             this,
-            tr("Application Name"),
-            tr("An information message.") );
+            tr("Cartoonerie"),
+            tr("Select a video file.") );
     }
+}
+
+void WelcomeAddProject::fpsInfo() {
+    QMessageBox::information(
+                this,
+                tr("Cartoonerie"),
+                tr("FPS: Frames per second."));
 }
 
 WelcomeAddProject::~WelcomeAddProject()

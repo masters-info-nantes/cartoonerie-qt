@@ -10,16 +10,19 @@ SOURCES += \
     projectmanager.cpp \
     main.cpp \
     welcomeaddproject.cpp \
-    welcomeproject.cpp
+    welcomeproject.cpp \
+    editor.cpp
 
 FORMS += \
     welcome.ui \
     welcomeaddproject.ui \
-    welcomeproject.ui
+    welcomeproject.ui \
+    editor.ui
 
 HEADERS += \
     welcome.h \
     project.h \
     projectmanager.h \
     welcomeaddproject.h \
-    welcomeproject.h
+    welcomeproject.h \
+    editor.h
