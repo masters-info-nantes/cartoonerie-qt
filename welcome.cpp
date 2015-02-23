@@ -10,9 +10,10 @@ Welcome::Welcome(QWidget *parent) :
     ui(new Ui::Welcome)
 {
     ui->setupUi(this);
+    this->projectManager = new ProjectManager();
     this->updateList();
-    this->current = new WelcomeAddProject;
-    this->welcomeHome = this->current;
+    this->welcomeHome = new WelcomeAddProject;
+    this->current = this->welcomeHome;
     ui->info->addWidget(this->current);
 
     connect(ui->listView->selectionModel(),
@@ -23,24 +24,32 @@ Welcome::Welcome(QWidget *parent) :
 void Welcome::updateList() {
     QStringListModel* model = new QStringListModel(this);
 
-    QStringList List;
-    List << "ofk";
+    QStringList projectList;
+    projectList.append("Add project");
 
-    model->setStringList(List);
+    for(int i=0; i<this->projectManager->getProjects()->size(); i++) {
+        projectList.append(this->projectManager->getProjects()->at(i)->getName());
+    }
+
+    model->setStringList(projectList);
     ui->listView->setModel(model);
 }
 
 void Welcome::selectProject(const QItemSelection& selection) {
-    if(selection.indexes().isEmpty()) {
+    int pos = ui->listView->currentIndex().row();
+    if(pos == 0) {
         ui->info->removeWidget(this->current);
         this->current->close();
         this->current = this->welcomeHome;
+        this->current->show();
         ui->info->addWidget(this->current);
     } else {
-        //displayModelIndexInMyView(selection.indexes().first());
         ui->info->removeWidget(this->current);
         this->current->close();
-        this->current = new WelcomeProject;
+        WelcomeProject *wp = new WelcomeProject;
+        wp->project = projectManager->getProjects()->at(pos-1);
+        wp->run();
+        this->current = wp;
         ui->info->addWidget(this->current);
     }
 }
