@@ -26,3 +26,8 @@ HEADERS += \
     welcomeaddproject.h \
     welcomeproject.h \
     editor.h
+
+OTHER_FILES +=
+
+RESOURCES += \
+    resources.qrc
