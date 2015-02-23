@@ -6,6 +6,11 @@ Editor::Editor(QWidget *parent) :
     ui(new Ui::Editor)
 {
     ui->setupUi(this);
+    connect(ui->actionClose_Project, SIGNAL(triggered()), this, SLOT(close_project()));
+}
+
+void Editor::close_project(){
+    this->close();
 }
 
 Editor::~Editor()

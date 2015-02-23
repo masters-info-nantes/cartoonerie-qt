@@ -15,6 +15,9 @@ public:
     explicit Editor(QWidget *parent = 0);
     ~Editor();
 
+public slots:
+    void close_project();
+
 private:
     Ui::Editor *ui;
 };
