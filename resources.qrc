@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/images">
+    <qresource prefix="/">
         <file>images/eraser-20.png</file>
         <file>images/pen-icon.png</file>
         <file>images/play.png</file>

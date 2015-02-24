@@ -3,7 +3,7 @@
 #define PROJECT_H
 #include <QString>
 #include <QVector>
-#include <Qdir>
+#include <QDir>
 /**
 * @class Project
 * @brief manage pawns type and rules
