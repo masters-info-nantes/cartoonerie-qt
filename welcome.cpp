@@ -12,7 +12,8 @@ Welcome::Welcome(QWidget *parent) :
     ui->setupUi(this);
     this->projectManager = new ProjectManager();
     this->updateList();
-    this->welcomeHome = new WelcomeAddProject;
+    this->welcomeHome = new WelcomeAddProject();
+    this->welcomeHome->projectManager = this->projectManager;
     this->current = this->welcomeHome;
     ui->info->addWidget(this->current);
 

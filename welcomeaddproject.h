@@ -5,6 +5,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include "editor.h"
+#include "project.h"
+#include "projectmanager.h"
 
 namespace Ui {
 class WelcomeAddProject;
@@ -17,6 +19,7 @@ class WelcomeAddProject : public QWidget
 public:
     explicit WelcomeAddProject(QWidget *parent = 0);
     ~WelcomeAddProject();
+    ProjectManager* projectManager;
 
 public slots:
      void selectFile();

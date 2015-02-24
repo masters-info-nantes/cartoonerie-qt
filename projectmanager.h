@@ -5,6 +5,8 @@
 #include <QDir>
 #include <QDomDocument>
 #include <QCoreApplication>
+#include <QDateTime>
+#include <QXmlStreamWriter>
 /**
 * @class ProjectManager
 * @brief manage projects
@@ -20,6 +22,7 @@ QVector<Project*>* projects;
 */
 Project* currentProject;
 public:
+QDir* projectDir;
 /**
 * @brief Default constructor
 */
@@ -47,6 +50,8 @@ void updateProjects();
 * @brief addProject
 * @param dir : project directory
 */
-void addProject(QDir* dir);
+Project* addProject(QDir* dir);
+
+void createProject(Project* p);
 };
 #endif // PROJECTMANAGER_H

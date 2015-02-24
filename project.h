@@ -16,7 +16,7 @@ QString name;
 /**
 * @brief Project description
 */
-QString description;
+int fps;
 /**
 * @brief Project input file
 */
@@ -28,7 +28,7 @@ public:
 * @param aDescription project description
 * @param aFile project input file
 */
-Project(QString aName, QString aDescription, QString aFile);
+Project(QString aName, int aFps, QString aFile);
 /**
 * @brief getName
 * @return project name
@@ -38,7 +38,7 @@ QString getName();
 * @brief getDescription
 * @return project description
 */
-QString getDescription();
+int getFps();
 /**
 * @brief getVersion
 * @return project version

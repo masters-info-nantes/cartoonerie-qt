@@ -1,9 +1,9 @@
 #include "project.h"
 
-Project::Project(QString aName, QString aDescription, QString aFile)
+Project::Project(QString aName, int aFps, QString aFile)
 {
     this->name = aName;
-    this->description = aDescription;
+    this->fps = aFps;
     this->file = aFile;
 }
 
@@ -12,9 +12,9 @@ QString Project::getName()
     return this->name;
 }
 
-QString Project::getDescription()
+int Project::getFps()
 {
-    return this->description;
+    return this->fps;
 }
 
 QString Project::getFile()

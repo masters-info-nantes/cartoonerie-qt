@@ -20,6 +20,17 @@ void WelcomeAddProject::selectFile() {
 
 void WelcomeAddProject::createProject() {
     if(ui->fileName->text() != "" && ui->projectName->text() != "") {
+        int fpsPos = ui->fps->currentIndex();
+        int fps = 6;
+        if(fpsPos == 1)
+            fps = 8;
+        if(fpsPos == 2)
+            fps = 12;
+        if(fpsPos == 3)
+            fps = 24;
+        qDebug("%d",fps);
+        Project* p = new Project(ui->projectName->text(),fps,ui->fileName->text());
+        this->projectManager->createProject(p);
         editor = new Editor();
         editor->show();
     } else {
