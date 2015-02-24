@@ -22,6 +22,15 @@ QString Project::getFile()
     return this->file;
 }
 
+QDir Project::getProjectDir()
+{
+    return this->projectDir;
+}
+
+void Project::setProjectDir(QDir dir)
+{
+    this->projectDir = dir;
+}
 
 
 

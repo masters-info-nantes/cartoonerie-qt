@@ -40,6 +40,7 @@ Project* ProjectManager::addProject(QDir* dir) {
     int fps = project.lastChildElement("fps").text().toInt();
     QString file = project.lastChildElement("file").text();
     Project* p =  new Project(name, fps,file);
+    p->setProjectDir(*dir);
     qDebug("Project: "+name.toUtf8());
 
     projects->push_back(p);
@@ -52,6 +53,8 @@ void ProjectManager::createProject(Project* p)
 
     QDir current = *projectDir;
     current.cd(QString::number(QDateTime::currentMSecsSinceEpoch()));
+
+    p->setProjectDir(current);
 
     QFile file(current.absolutePath()+QDir::separator()+"project.xml");
       file.open(QIODevice::WriteOnly);

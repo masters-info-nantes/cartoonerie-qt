@@ -3,6 +3,7 @@
 #define PROJECT_H
 #include <QString>
 #include <QVector>
+#include <Qdir>
 /**
 * @class Project
 * @brief manage pawns type and rules
@@ -21,6 +22,8 @@ int fps;
 * @brief Project input file
 */
 QString file;
+
+QDir projectDir;
 public:
 /**
 * @brief Create a new project
@@ -44,5 +47,8 @@ int getFps();
 * @return project version
 */
 QString getFile();
+
+QDir getProjectDir();
+void setProjectDir(QDir dir);
 };
 #endif // PROJECT_H
