@@ -32,6 +32,7 @@ void WelcomeAddProject::createProject() {
         Project* p = new Project(ui->projectName->text(),fps,ui->fileName->text());
         this->projectManager->createProject(p);
         editor = new Editor();
+        editor->project = p;
         editor->show();
     } else {
         QMessageBox::critical(

@@ -20,6 +20,7 @@ void WelcomeProject::run() {
 
 void WelcomeProject::editProject(){
     Editor* editor = new Editor();
+    editor->project = this->project;
     editor->show();
 }
 

@@ -203,7 +203,7 @@
       <item>
        <layout class="QVBoxLayout" name="Workspace">
         <item>
-         <widget class="QVideoWidget" name="Player" native="true"/>
+         <layout class="QHBoxLayout" name="drawZone"/>
         </item>
         <item>
          <widget class="QGroupBox" name="Video_player">
@@ -430,14 +430,6 @@
    </property>
   </action>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QVideoWidget</class>
-   <extends>QWidget</extends>
-   <header>qvideowidget.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>

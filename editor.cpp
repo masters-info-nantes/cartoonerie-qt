@@ -7,6 +7,7 @@ Editor::Editor(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->actionClose_Project, SIGNAL(triggered()), this, SLOT(close_project()));
+    ui->drawZone->addWidget(new Draw(50,50));
 }
 
 void Editor::close_project(){

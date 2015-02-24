@@ -11,7 +11,9 @@ SOURCES += \
     main.cpp \
     welcomeaddproject.cpp \
     welcomeproject.cpp \
-    editor.cpp
+    editor.cpp \
+    draw.cpp \
+    histo.cpp
 
 FORMS += \
     welcome.ui \
@@ -25,7 +27,9 @@ HEADERS += \
     projectmanager.h \
     welcomeaddproject.h \
     welcomeproject.h \
-    editor.h
+    editor.h \
+    draw.h \
+    histo.h
 
 OTHER_FILES +=
 
