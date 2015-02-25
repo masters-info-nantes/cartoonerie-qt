@@ -173,12 +173,12 @@
               </sizepolicy>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>1</number>
              </property>
              <widget class="QWidget" name="pen">
               <attribute name="icon">
                <iconset resource="resources.qrc">
-                <normaloff>:/images/images/pen-icon.png</normaloff>:/images/images/pen-icon.png</iconset>
+                <normaloff>:/images/pen-icon.png</normaloff>:/images/pen-icon.png</iconset>
               </attribute>
               <attribute name="title">
                <string/>
@@ -187,7 +187,7 @@
              <widget class="QWidget" name="eraser">
               <attribute name="icon">
                <iconset resource="resources.qrc">
-                <normaloff>:/images/images/eraser-20.png</normaloff>:/images/images/eraser-20.png</iconset>
+                <normaloff>:/images/eraser-20.png</normaloff>:/images/eraser-20.png</iconset>
               </attribute>
               <attribute name="title">
                <string/>
@@ -239,7 +239,7 @@
              </property>
              <property name="icon">
               <iconset resource="resources.qrc">
-               <normaloff>:/images/images/play.png</normaloff>:/images/images/play.png</iconset>
+               <normaloff>:/images/play.png</normaloff>:/images/play.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -271,7 +271,7 @@
              </property>
              <property name="icon">
               <iconset resource="resources.qrc">
-               <normaloff>:/images/images/stop.png</normaloff>:/images/images/stop.png</iconset>
+               <normaloff>:/images/stop.png</normaloff>:/images/stop.png</iconset>
              </property>
              <property name="iconSize">
               <size>

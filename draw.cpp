@@ -14,7 +14,7 @@ Draw::Draw(int longueur, int largeur, QWidget * parent):QLabel(parent), dessin(l
     setStyleSheet("background: transparent");
     setPixmap(dessin);
 
-    path_souris = ":/images/images/pen-icon.png";
+    path_souris = ":/images/pen-icon.png";
     QPixmap crayon_souris(path_souris.c_str());
     image_souris = crayon_souris.scaledToWidth(15);
     curseur = QCursor(image_souris, 0, 15);
@@ -96,10 +96,10 @@ void Draw::changer_taille_crayon(int nouvelle_taille){
 void Draw::set_utiliser_crayon(bool choix){
     utiliser_crayon = choix;
     if(choix){
-        path_souris = ":/images/images/pen-icon.png";
+        path_souris = ":/images/pen-icon.png";
     }
     else{
-        path_souris = ":/images/images/eraser-20.png";
+        path_souris = ":/images/eraser-20.png";
     }
 
     QPixmap crayon_souris(path_souris.c_str());
