@@ -7,7 +7,10 @@ Editor::Editor(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->actionClose_Project, SIGNAL(triggered()), this, SLOT(close_project()));
-    ui->drawZone->addWidget(new Draw(50,50));
+    Draw* draw = new Draw(800,500);
+    draw->setAlignment(Qt::AlignCenter);
+    draw->set_color(Qt::black);
+    ui->drawZone->addWidget(draw);
 }
 
 void Editor::close_project(){
