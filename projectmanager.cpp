@@ -74,7 +74,7 @@ void ProjectManager::createProject(Project* p)
       current.mkdir("calque");
       current.mkdir("videos");
       current.cd("images_video");
-      std::string str = "ffmpeg -i " + p->getFile().toStdString() +" -r " + QString::number(p->getFps()).toStdString() + " " + current.path().toStdString() + "/image%03d.png";
+      std::string str = "avconv -i " + p->getFile().toStdString() +" -r " + QString::number(p->getFps()).toStdString() + " " + current.path().toStdString() + "/image%03d.png";
       system(str.c_str());
 
       projects->push_back(p);

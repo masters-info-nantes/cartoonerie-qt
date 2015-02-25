@@ -20,6 +20,7 @@ public:
 
 public slots:
     void close_project();
+    void export_project();
 
 private:
     Ui::Editor *ui;
