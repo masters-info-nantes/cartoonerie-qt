@@ -11,6 +11,7 @@ Editor::Editor(Project *project, QWidget *parent) :
     connect(ui->actionClose_Project, SIGNAL(triggered()), this, SLOT(close_project()));
     ui->stackzone->push(new DrawZone(800,500));
 
+    ui->thumbnailsList->setFlow(QListView::LeftToRight);
     // Generate a draw for each image
     QDir dir(project->getProjectDir());
     dir.cd("video_frames");
@@ -27,9 +28,26 @@ Editor::Editor(Project *project, QWidget *parent) :
             img->save(dirdraw.absolutePath() + "/" + pictureName.baseName() + ".draw.png");
             delete img;
         }
-    }
 
-    ui->thumbnailsList->setFlow(QListView::LeftToRight);
+        QLabel* thumbLabel = new QLabel();
+        thumbLabel->setAlignment(Qt::AlignCenter);
+        thumbLabel->setToolTip(dir.absolutePath() + "/" + file);
+
+        QPixmap* thumbFull = new QPixmap(dir.absolutePath() + "/" + file);
+        QPixmap thumbScaled(thumbFull->scaledToHeight(100));
+
+        thumbLabel->setPixmap(thumbScaled);
+        thumbLabel->setMinimumSize(QSize(thumbScaled.width(), thumbScaled.height()));
+
+        QListWidgetItem* listItem = new QListWidgetItem(ui->thumbnailsList);
+        listItem->setSizeHint(QSize(thumbLabel->minimumWidth()+ 30, thumbLabel->minimumHeight()));
+
+        ui->thumbnailsList->addItem(listItem);
+        ui->thumbnailsList->setItemWidget(listItem, thumbLabel);
+
+        delete thumbFull;// not use after
+
+    }
     connect(ui->thumbnailsList, SIGNAL(currentRowChanged(int)), this, SLOT(thumbClick(int)));
 }
 

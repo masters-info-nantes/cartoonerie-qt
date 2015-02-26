@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <project.h>
 #include "drawzone.h"
+#include <QLabel>
 
 namespace Ui {
 class Editor;
