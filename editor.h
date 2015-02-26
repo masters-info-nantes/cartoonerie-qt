@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <project.h>
-#include "draw.h"
+#include "drawzone.h"
 
 namespace Ui {
 class Editor;

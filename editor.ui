@@ -203,7 +203,7 @@
       <item>
        <layout class="QVBoxLayout" name="Workspace">
         <item>
-         <layout class="QHBoxLayout" name="drawZone"/>
+         <widget class="StackWidget" name="stackzone" native="true"/>
         </item>
         <item>
          <widget class="QGroupBox" name="Video_player">
@@ -436,6 +436,14 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>StackWidget</class>
+   <extends>QWidget</extends>
+   <header>stackwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>

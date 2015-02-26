@@ -12,8 +12,9 @@ SOURCES += \
     welcomeaddproject.cpp \
     welcomeproject.cpp \
     editor.cpp \
-    draw.cpp \
-    histo.cpp
+    drawzone.cpp \
+    imagewidget.cpp \
+    stackwidget.cpp
 
 FORMS += \
     welcome.ui \
@@ -28,8 +29,9 @@ HEADERS += \
     welcomeaddproject.h \
     welcomeproject.h \
     editor.h \
-    draw.h \
-    histo.h
+    drawzone.h \
+    imagewidget.h \
+    stackwidget.h
 
 OTHER_FILES +=
 
