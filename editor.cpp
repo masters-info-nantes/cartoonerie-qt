@@ -9,8 +9,7 @@ Editor::Editor(Project *project, QWidget *parent) :
     this->project = project;
 
     connect(ui->actionClose_Project, SIGNAL(triggered()), this, SLOT(close_project()));
-<<<<<<< HEAD
-    ui->stackzone->push(new DrawZone(500,500));
+    ui->stackzone->push(new DrawZone(800,500));
 
     // Generate a draw for each image
     QDir dir(project->getProjectDir());
@@ -27,8 +26,6 @@ Editor::Editor(Project *project, QWidget *parent) :
             delete img;
         }
     }
-=======
-    ui->stackzone->push(new DrawZone(800,500));
 
     ui->thumbnailsList->setFlow(QListView::LeftToRight);
     connect(ui->thumbnailsList, SIGNAL(currentRowChanged(int)), this, SLOT(thumbClick(int)));
@@ -37,7 +34,6 @@ Editor::Editor(Project *project, QWidget *parent) :
 void Editor::thumbClick(int index){
     //this->changeCurrentImage(index);
     qDebug("ok");
->>>>>>> 608f4293ae7159d05f0b3829c4c0c833ddbda199
 }
 
 void Editor::close_project(){
