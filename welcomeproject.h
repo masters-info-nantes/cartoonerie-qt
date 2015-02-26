@@ -15,16 +15,19 @@ class WelcomeProject : public QWidget
     Q_OBJECT
 
 public:
-    Project *project;
-    explicit WelcomeProject(QWidget *parent = 0);
-    void run();
+    explicit WelcomeProject(Project *project, QWidget *parent = 0);
     ~WelcomeProject();
 
 public slots:
      void editProject();
+     void play();
+     void stop();
 
 private:
     Ui::WelcomeProject *ui;
+    Project *project;
+    QMediaPlayer* player;
+    bool isPlay = false;
 };
 
 #endif // WELCOMEPROJECT_H

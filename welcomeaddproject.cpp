@@ -1,5 +1,6 @@
 #include "welcomeaddproject.h"
 #include "ui_welcomeaddproject.h"
+#include "welcome.h"
 
 WelcomeAddProject::WelcomeAddProject(QWidget *parent) :
     QWidget(parent),
@@ -31,6 +32,7 @@ void WelcomeAddProject::createProject() {
         qDebug("%d",fps);
         Project* p = new Project(ui->projectName->text(),fps,ui->fileName->text());
         this->projectManager->createProject(p);
+        ((Welcome*)this->parent())->updateList();
         editor = new Editor(p);
         editor->show();
     } else {

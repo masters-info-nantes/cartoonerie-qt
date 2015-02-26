@@ -47,9 +47,7 @@ void Welcome::selectProject(const QItemSelection& selection) {
     } else {
         ui->info->removeWidget(this->current);
         this->current->close();
-        WelcomeProject *wp = new WelcomeProject;
-        wp->project = projectManager->getProjects()->at(pos-1);
-        wp->run();
+        WelcomeProject *wp = new WelcomeProject(projectManager->getProjects()->at(pos-1));
         this->current = wp;
         ui->info->addWidget(this->current);
     }
