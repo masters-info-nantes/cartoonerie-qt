@@ -79,7 +79,7 @@ void ProjectManager::createProject(Project* p)
       QStringList args;
       args << "-i" << p->getFile();
       args << "-r" << QString::number(p->getFps());// TODO save fps + manage to insert inside project
-      args << p->getName() + "-%3d.jpeg";
+      args << p->getName() + "-%3d.png";
 
       /*
        * For osx systems, avconv must be in /usr/bin

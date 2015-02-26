@@ -1,5 +1,7 @@
 #include "editor.h"
 #include "ui_editor.h"
+#include <sstream>
+#include <string>
 
 Editor::Editor(Project *project, QWidget *parent) :
     QMainWindow(parent),
@@ -52,8 +54,22 @@ Editor::Editor(Project *project, QWidget *parent) :
 }
 
 void Editor::thumbClick(int index){
+    index--;
+    ui->stackzone->removeAll();
+    QString img;
+    std::stringstream s;
+    s << index;
+    QString image = s.str().c_str();
+    if(index <10){
+        img = project->getName()+"-00"+image+".png";
+    }
+    else{
+        img = project->getName()+"-0"+image+".png";
+    }
+    qDebug((project->getName()+"-0"+image+".png").toUtf8());
     //this->changeCurrentImage(index);
-    qDebug("ok");
+    ui->stackzone->push(project->getProjectDir().absolutePath()+"/video_frames/"+img);
+    qDebug((project->getProjectDir().absolutePath()+"/video_frames/"+img).toUtf8());
 }
 
 void Editor::close_project(){
