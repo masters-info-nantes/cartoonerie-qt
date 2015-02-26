@@ -8,12 +8,14 @@ Editor::Editor(Project *project, QWidget *parent) :
     ui(new Ui::Editor)
 {
     ui->setupUi(this);
+    this->drawzone = new DrawZone(800,500);
     this->project = project;
-
+    currentIndex=0;
     connect(ui->actionClose_Project, SIGNAL(triggered()), this, SLOT(close_project()));
-    ui->stackzone->push(new DrawZone(800,500));
+    ui->stackzone->push(this->drawzone);
 
     ui->thumbnailsList->setFlow(QListView::LeftToRight);
+
     // Generate a draw for each image
     QDir dir(project->getProjectDir());
     dir.cd("video_frames");
@@ -26,9 +28,13 @@ Editor::Editor(Project *project, QWidget *parent) :
         QString file (files.at(i));
         if(file != "." && file != ".." && !file.endsWith(".draw.png")){
             QFileInfo pictureName(file);
-            QImage* img = new QImage(ui->stackzone->size(), QImage::Format_ARGB32);
-            img->save(dirdraw.absolutePath() + "/" + pictureName.baseName() + ".draw.png");
-            delete img;
+            QStringList draws(dirdraw.entryList());
+            if(draws.filter(pictureName.baseName()).size()!=0){
+                QImage* img = new QImage(ui->stackzone->size(), QImage::Format_ARGB32);
+                img->save(dirdraw.absolutePath() + "/" + pictureName.baseName() + ".draw.png");
+                delete img;
+            }
+
         }
 
         QLabel* thumbLabel = new QLabel();
@@ -52,12 +58,14 @@ Editor::Editor(Project *project, QWidget *parent) :
     }
     connect(ui->thumbnailsList, SIGNAL(currentRowChanged(int)), this, SLOT(thumbClick(int)));
     ui->stackzone->push(project->getProjectDir().absolutePath()+"/video_frames/"+project->getName()+"-001.png");
-
 }
 
 void Editor::thumbClick(int index){
     index--;
+    this->currentIndex=index;
+    this->saveCurrentDraw();
     ui->stackzone->removeAll();
+    this->drawzone = new DrawZone(800,500);
     QString img;
     std::stringstream s;
     s << index;
@@ -68,10 +76,22 @@ void Editor::thumbClick(int index){
     else{
         img = project->getName()+"-0"+image+".png";
     }
-    qDebug((project->getName()+"-0"+image+".png").toUtf8());
     //this->changeCurrentImage(index);
-    ui->stackzone->push(project->getProjectDir().absolutePath()+"/video_frames/"+img);
-    qDebug((project->getProjectDir().absolutePath()+"/video_frames/"+img).toUtf8());
+    QImage* frame = new QImage(project->getProjectDir().absolutePath()+"/video_frames/"+img);
+    this->drawzone->replaceLayer(frame);
+    ui->stackzone->removeAll();
+    ui->stackzone->push(this->drawzone);
+
+}
+
+void Editor::saveCurrentDraw(){
+    QLabel* label = (QLabel*)ui->thumbnailsList->itemWidget(ui->thumbnailsList->item(this->currentIndex));
+    if(label == NULL) return;
+
+    QFileInfo pictName(QFileInfo(label->toolTip()));
+    QString drawName(project->getProjectDir().absolutePath() + "/drawings/" + pictName.completeBaseName() + ".draw" + ".png");
+
+    this->drawzone->save(drawName, QPixmap(label->toolTip()).size());
 }
 
 void Editor::close_project(){

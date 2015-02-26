@@ -5,6 +5,7 @@
 #include <project.h>
 #include "drawzone.h"
 #include <QLabel>
+#include <QDir>
 
 namespace Ui {
 class Editor;
@@ -21,10 +22,15 @@ public:
 public slots:
     void close_project();
     void thumbClick(int index);
+    void saveCurrentDraw();
 
 private:
     Ui::Editor *ui;
     Project* project;
+    int currentIndex;
+    QDir dir;
+    QDir dirdraw;
+    DrawZone *drawzone;
 };
 
 #endif // EDITOR_H
