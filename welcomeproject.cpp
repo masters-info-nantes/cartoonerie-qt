@@ -24,8 +24,14 @@ void WelcomeProject::editProject(){
 }
 
 void WelcomeProject::play(){
-    this->player->play();
-    //this->player->pause();
+    if(!isPlay) {
+        this->player->play();
+        ui->playBtn->setIcon(QIcon(QPixmap(":images/pause.png")));
+    } else {
+        this->player->pause();
+        ui->playBtn->setIcon(QIcon(QPixmap(":images/play.png")));
+    }
+    isPlay = !isPlay;
 }
 
 void WelcomeProject::stop(){
