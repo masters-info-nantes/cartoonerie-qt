@@ -51,6 +51,8 @@ Editor::Editor(Project *project, QWidget *parent) :
 
     }
     connect(ui->thumbnailsList, SIGNAL(currentRowChanged(int)), this, SLOT(thumbClick(int)));
+    ui->stackzone->push(project->getProjectDir().absolutePath()+"/video_frames/"+project->getName()+"-001.png");
+
 }
 
 void Editor::thumbClick(int index){
