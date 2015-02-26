@@ -7,7 +7,15 @@ Editor::Editor(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->actionClose_Project, SIGNAL(triggered()), this, SLOT(close_project()));
-    ui->stackzone->push(new DrawZone(500,500));
+    ui->stackzone->push(new DrawZone(800,500));
+
+    ui->thumbnailsList->setFlow(QListView::LeftToRight);
+    connect(ui->thumbnailsList, SIGNAL(currentRowChanged(int)), this, SLOT(thumbClick(int)));
+}
+
+void Editor::thumbClick(int index){
+    //this->changeCurrentImage(index);
+    qDebug("ok");
 }
 
 void Editor::close_project(){

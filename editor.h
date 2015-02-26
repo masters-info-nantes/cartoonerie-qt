@@ -20,6 +20,7 @@ public:
 
 public slots:
     void close_project();
+    void thumbClick(int index);
 
 private:
     Ui::Editor *ui;
