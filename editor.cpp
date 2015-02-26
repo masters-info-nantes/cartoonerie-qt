@@ -13,16 +13,18 @@ Editor::Editor(Project *project, QWidget *parent) :
 
     // Generate a draw for each image
     QDir dir(project->getProjectDir());
-    dir.cd("drawings");
-    QStringList files(dir.entryList());
+    dir.cd("video_frames");
 
+    QDir dirdraw(project->getProjectDir());
+    dirdraw.cd("drawings");
+
+    QStringList files(dir.entryList());
     for(int i = 0; i < files.length(); i++){
         QString file (files.at(i));
         if(file != "." && file != ".." && !file.endsWith(".draw.png")){
             QFileInfo pictureName(file);
-
             QImage* img = new QImage(ui->stackzone->size(), QImage::Format_ARGB32);
-            img->save(dir.absolutePath() + "/" + pictureName.baseName() + ".draw.png");
+            img->save(dirdraw.absolutePath() + "/" + pictureName.baseName() + ".draw.png");
             delete img;
         }
     }
