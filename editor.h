@@ -14,15 +14,15 @@ class Editor : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit Editor(QWidget *parent = 0);
+    Editor(Project *project, QWidget *parent = 0);
     ~Editor();
-    Project* project;
 
 public slots:
     void close_project();
 
 private:
     Ui::Editor *ui;
+    Project* project;
 };
 
 #endif // EDITOR_H

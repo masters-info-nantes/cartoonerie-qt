@@ -6,6 +6,7 @@
 #include <QDomDocument>
 #include <QCoreApplication>
 #include <QDateTime>
+#include <QProcess>
 #include <QXmlStreamWriter>
 /**
 * @class ProjectManager

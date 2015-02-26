@@ -1,4 +1,4 @@
-#include "projectmanager.h"
+﻿#include "projectmanager.h"
 
 ProjectManager::ProjectManager()
 {
@@ -49,10 +49,12 @@ Project* ProjectManager::addProject(QDir* dir) {
 
 void ProjectManager::createProject(Project* p)
 {
-    this->projectDir->mkdir(QString::number(QDateTime::currentMSecsSinceEpoch()));
+    QString timestamp = QString::number(QDateTime::currentMSecsSinceEpoch());
+    this->projectDir->mkdir(timestamp);
 
     QDir current = *projectDir;
-    current.cd(QString::number(QDateTime::currentMSecsSinceEpoch()));
+    current.cd(timestamp);
+    qDebug(current.absolutePath().toUtf8());
 
     p->setProjectDir(current);
 
@@ -69,13 +71,27 @@ void ProjectManager::createProject(Project* p)
       xmlWriter.writeEndDocument();
       file.close();
 
-      current.mkdir("images_video");
-      current.mkdir("dessins");
-      current.mkdir("calque");
-      current.mkdir("videos");
-      current.cd("images_video");
-      std::string str = "ffmpeg -i " + p->getFile().toStdString() +" -r " + QString::number(p->getFps()).toStdString() + " " + current.path().toStdString() + "/image%03d.png";
-      system(str.c_str());
+      current.mkdir("video_frames");
+      current.mkdir("drawings");
+      current.cd("video_frames");
+      // Split movie with avconv
+
+      QStringList args;
+      args << "-i" << p->getFile();
+      args << "-r" << QString::number(p->getFps());// TODO save fps + manage to insert inside project
+      args << p->getName() + "-%3d.jpeg";
+
+      /*
+       * For osx systems, avconv must be in /usr/bin
+       * - test with "which avconv"
+       * - if not do a symbolic link:
+       *   ln -s /usr/local/bin/avconv /usr/bin/avconv
+       */
+      //QProcess::execute("avconv", args);
+      QProcess command;
+      command.setWorkingDirectory(current.absolutePath());
+      command.start("avconv", args);// TODO detect avconv or avconv installation
+      command.waitForFinished();
 
       projects->push_back(p);
 
