@@ -9,6 +9,9 @@ Editor::Editor(Project *project, QWidget *parent) :
 {
     ui->setupUi(this);
     this->drawzone = new DrawZone(800,500);
+
+    connect(ui->tools, SIGNAL(currentChanged(int)), this, SLOT(updateTool(int)));
+
     this->project = project;
     currentIndex=0;
     connect(ui->actionClose_Project, SIGNAL(triggered()), this, SLOT(close_project()));
@@ -82,6 +85,10 @@ void Editor::thumbClick(int index){
     ui->stackzone->removeAll();
     ui->stackzone->push(this->drawzone);
 
+}
+
+void Editor::updateTool(int index){
+    this->drawzone->setTool(index);
 }
 
 void Editor::saveCurrentDraw(){

@@ -24,12 +24,13 @@ public slots:
     void close_project();
     void thumbClick(int index);
     void saveCurrentDraw();
+    void updateTool(int index);
 
 private:
     Ui::Editor *ui;
     Project* project;
     ColorPicker* colorPicker;
-    PenSizePicker* PenSizePicker;
+    PenSizePicker* penSizePicker;
     int currentIndex;
     QDir dir;
     QDir dirdraw;

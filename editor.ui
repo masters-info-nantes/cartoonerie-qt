@@ -125,6 +125,9 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="frame">
+                 <bool>true</bool>
+                </property>
                 <property name="alignment">
                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                 </property>
@@ -180,7 +183,7 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QTabWidget" name="Tools_tab">
+            <widget class="QTabWidget" name="tools">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
                <horstretch>0</horstretch>
@@ -188,7 +191,7 @@
               </sizepolicy>
              </property>
              <property name="currentIndex">
-              <number>2</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="pen">
               <attribute name="icon">
@@ -198,7 +201,27 @@
               <attribute name="title">
                <string/>
               </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_5"/>
+              <layout class="QVBoxLayout" name="verticalLayout_5">
+               <item>
+                <widget class="PenSizePicker" name="penSize" native="true"/>
+               </item>
+               <item>
+                <widget class="ColorPicker" name="penColor" native="true"/>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
              </widget>
              <widget class="QWidget" name="trait">
               <attribute name="icon">
@@ -208,7 +231,27 @@
               <attribute name="title">
                <string/>
               </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_7"/>
+              <layout class="QVBoxLayout" name="verticalLayout_7">
+               <item>
+                <widget class="PenSizePicker" name="traitSize" native="true"/>
+               </item>
+               <item>
+                <widget class="ColorPicker" name="traitColor" native="true"/>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
              </widget>
              <widget class="QWidget" name="eraser">
               <attribute name="icon">
@@ -218,7 +261,24 @@
               <attribute name="title">
                <string/>
               </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_4"/>
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <item>
+                <widget class="PenSizePicker" name="eraserSize" native="true"/>
+               </item>
+               <item>
+                <spacer name="verticalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
              </widget>
             </widget>
            </item>
@@ -478,6 +538,18 @@
    <class>StackWidget</class>
    <extends>QWidget</extends>
    <header>stackwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ColorPicker</class>
+   <extends>QWidget</extends>
+   <header>colorpicker.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PenSizePicker</class>
+   <extends>QWidget</extends>
+   <header>pensizepicker.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -7,5 +7,6 @@
         <file>images/tool-line.png</file>
         <file>images/tool-pencil.png</file>
         <file>images/tool-rubberpointer.png</file>
+        <file>images/color_wheel.png</file>
     </qresource>
 </RCC>
