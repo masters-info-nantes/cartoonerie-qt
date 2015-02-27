@@ -14,13 +14,17 @@ SOURCES += \
     editor.cpp \
     drawzone.cpp \
     imagewidget.cpp \
-    stackwidget.cpp
+    stackwidget.cpp \
+    colorpicker.cpp \
+    pensizepicker.cpp
 
 FORMS += \
     welcome.ui \
     welcomeaddproject.ui \
     welcomeproject.ui \
-    editor.ui
+    editor.ui \
+    colorpicker.ui \
+    pensizepicker.ui
 
 HEADERS += \
     welcome.h \
@@ -31,7 +35,9 @@ HEADERS += \
     editor.h \
     drawzone.h \
     imagewidget.h \
-    stackwidget.h
+    stackwidget.h \
+    colorpicker.h \
+    pensizepicker.h
 
 OTHER_FILES +=
 

@@ -22,6 +22,9 @@ public slots:
      void editProject();
      void play();
      void stop();
+     void durationChanged(qint64 progress);
+     void positionChanged(qint64 progress);
+     void seek(int);
 
 private:
     Ui::WelcomeProject *ui;

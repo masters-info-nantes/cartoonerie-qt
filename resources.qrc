@@ -1,8 +1,11 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/eraser-20.png</file>
-        <file>images/pen-icon.png</file>
         <file>images/play.png</file>
         <file>images/stop.png</file>
+        <file>images/pause.png</file>
+        <file>images/tool-eraser.png</file>
+        <file>images/tool-line.png</file>
+        <file>images/tool-pencil.png</file>
+        <file>images/tool-rubberpointer.png</file>
     </qresource>
 </RCC>

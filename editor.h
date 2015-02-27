@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <project.h>
 #include "drawzone.h"
+#include "colorpicker.h"
+#include "pensizepicker.h"
 
 namespace Ui {
 class Editor;
@@ -24,6 +26,8 @@ public slots:
 private:
     Ui::Editor *ui;
     Project* project;
+    ColorPicker* colorPicker;
+    PenSizePicker* PenSizePicker;
 };
 
 #endif // EDITOR_H

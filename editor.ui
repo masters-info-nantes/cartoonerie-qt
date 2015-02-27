@@ -54,6 +54,15 @@
              <property name="text">
               <string>Video</string>
              </property>
+             <property name="autoDefault">
+              <bool>false</bool>
+             </property>
+             <property name="default">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
+             </property>
             </widget>
            </item>
            <item>
@@ -135,6 +144,12 @@
              <property name="text">
               <string>Cartoon</string>
              </property>
+             <property name="autoDefault">
+              <bool>false</bool>
+             </property>
+             <property name="default">
+              <bool>true</bool>
+             </property>
             </widget>
            </item>
           </layout>
@@ -173,25 +188,37 @@
               </sizepolicy>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>2</number>
              </property>
              <widget class="QWidget" name="pen">
               <attribute name="icon">
                <iconset resource="resources.qrc">
-                <normaloff>:/images/pen-icon.png</normaloff>:/images/pen-icon.png</iconset>
+                <normaloff>:/images/tool-pencil.png</normaloff>:/images/tool-pencil.png</iconset>
               </attribute>
               <attribute name="title">
                <string/>
               </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_5"/>
+             </widget>
+             <widget class="QWidget" name="trait">
+              <attribute name="icon">
+               <iconset resource="resources.qrc">
+                <normaloff>:/images/tool-line.png</normaloff>:/images/tool-line.png</iconset>
+              </attribute>
+              <attribute name="title">
+               <string/>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_7"/>
              </widget>
              <widget class="QWidget" name="eraser">
               <attribute name="icon">
                <iconset resource="resources.qrc">
-                <normaloff>:/images/eraser-20.png</normaloff>:/images/eraser-20.png</iconset>
+                <normaloff>:/images/tool-eraser.png</normaloff>:/images/tool-eraser.png</iconset>
               </attribute>
               <attribute name="title">
                <string/>
               </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_4"/>
              </widget>
             </widget>
            </item>
