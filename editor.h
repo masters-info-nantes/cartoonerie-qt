@@ -8,6 +8,8 @@
 #include "pensizepicker.h"
 #include <QColor>
 #include <QLabel>
+#include <QFileDialog>
+#include <QMessageBox>
 
 namespace Ui {
 class Editor;
@@ -25,6 +27,7 @@ public slots:
     void close_project();
     void thumbClick(int index);
     void saveCurrentDraw();
+    void exportDrawWithMovie();
     void updateTool(int index);
     void updateAllColor(QColor color);
     void updateAllSize(int size);

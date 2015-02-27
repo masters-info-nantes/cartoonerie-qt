@@ -24,6 +24,7 @@ Editor::Editor(Project *project, QWidget *parent) :
     this->project = project;
     currentIndex=0;
     connect(ui->actionClose_Project, SIGNAL(triggered()), this, SLOT(close_project()));
+    connect(ui->actionExport, SIGNAL(triggered()), this, SLOT(exportDrawWithMovie()));
     ui->stackzone->push(this->drawzone);
 
     ui->thumbnailsList->setFlow(QListView::LeftToRight);
@@ -131,6 +132,30 @@ void Editor::saveCurrentDraw(){
 
 void Editor::close_project(){
     this->close();
+}
+
+void Editor::exportDrawWithMovie(){
+    QString drawMovie(QFileDialog::getSaveFileName(this, tr("Export the drawings with the movie"),
+                                                    project->getName() + "-drawmovie.mp4",
+                                                    tr("Files (*.mp4)")));
+    this->saveCurrentDraw();
+
+    if(!drawMovie.endsWith(".mp4")){
+        drawMovie += ".mp4";
+    }
+
+    // Export
+    QStringList args;
+    args << "-r" << QString::number(6);
+    args << "-i" << project->getName() + "-%03d.draw.png";
+    args << drawMovie;
+
+    QProcess command;
+    command.setWorkingDirectory(project->getProjectDir().absolutePath()+"/drawings");
+    command.start("avconv", args);
+    command.waitForFinished(1000*1000); // 1000sec, otherwise it cuts itself
+
+    QMessageBox::information(this, "Export of the drawings", "La vidéo a été générée à partir des dessins avec succès");
 }
 
 Editor::~Editor()
