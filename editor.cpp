@@ -3,8 +3,19 @@
 #include <sstream>
 #include <string>
 
+QString* drawImageName(QString s)
+{
+    QFileInfo pictName(s);
+    QString *drawName(new QString("/drawings/"+pictName.absolutePath() + "/" + pictName.completeBaseName() + ".draw" + ".png"));
+
+    return drawName;
+}
+
 Editor::Editor(Project *project, QWidget *parent) :
     QMainWindow(parent),
+    backgroundDisplayed(true),
+    onionDisplayed(false),
+    peelingsCount(DEFAULT_PEELINGS_COUNT),
     ui(new Ui::Editor)
 {
     ui->setupUi(this);
@@ -71,16 +82,21 @@ Editor::Editor(Project *project, QWidget *parent) :
     }
     connect(ui->thumbnailsList, SIGNAL(currentRowChanged(int)), this, SLOT(thumbClick(int)));
     ui->stackzone->push(project->getProjectDir().absolutePath()+"/video_frames/"+project->getName()+"-001.png");
+    connect(ui->Video, SIGNAL(clicked(bool)), this, SLOT(displayBackgroundMovie(bool)));
+    connect(ui->Onion, SIGNAL(clicked(bool)), this, SLOT(onionPeelings(bool)));
 }
 
 void Editor::thumbClick(int index){
-    index--;
-    this->updateThumbnails();
-    this->currentIndex=index;
-    this->saveCurrentDraw();
-    ui->stackzone->removeAll();
-    this->drawzone = new DrawZone(800,500);
-    QString img;
+    int maxIndex(ui->thumbnailsList->count() - 1);
+    if(index < 0) index = 0;
+    else if(index > maxIndex) index = maxIndex;
+    if(this->currentIndex >= 0){
+        this->saveCurrentDraw();
+    }
+    ui->thumbnailsList->setCurrentRow(index);
+    QLabel* label((QLabel*)ui->thumbnailsList->itemWidget(ui->thumbnailsList->item(index)));
+    QString drawName(drawImageName(label->toolTip())->constData());
+    /*QString img;
     std::stringstream s;
     s << index;
     QString image = s.str().c_str();
@@ -89,13 +105,39 @@ void Editor::thumbClick(int index){
     }
     else{
         img = project->getName()+"-0"+image+".png";
-    }
+    }*/
     //this->changeCurrentImage(index);
-    QImage* frame = new QImage(project->getProjectDir().absolutePath()+"/video_frames/"+img);
-    this->drawzone->replaceLayer(frame);
+    QFile nextDrawFile(drawName);
+    QImage *back, *img;
+    if(nextDrawFile.exists()){
+        img = new QImage(drawName);
+        back = this->drawzone->replaceLayer(img);
+    }
+    else
+    {
+        img = new QImage(this->drawzone->size(), QImage::Format_ARGB32);
+        back = this->drawzone->replaceLayer(img);
+    }
+
+    //QImage* frame = new QImage(project->getProjectDir().absolutePath()+"/video_frames/"+img);
+    //this->drawzone->replaceLayer(frame);
+
+    if(this->backgroundDisplayed)
+    {
+        QLayoutItem* previousBackground(ui->stackzone->removeBottom());
+        delete previousBackground;
+    }
+
     ui->stackzone->removeAll();
     ui->stackzone->push(this->drawzone);
 
+    if(this->backgroundDisplayed){
+        ui->stackzone->push(label->toolTip());
+    }
+
+    this->currentIndex = index;
+    delete img;
+    delete back;
 }
 
 void Editor::updateThumbnails(){
@@ -187,6 +229,73 @@ void Editor::exportDrawWithMovie(){
     command.waitForFinished(1000*1000); // 1000sec, otherwise it cuts itself
 
     QMessageBox::information(this, "Export of the drawings", "The video was generated from the drawings with success");
+}
+
+void Editor::displayBackgroundMovie(bool active){
+    if(this->backgroundDisplayed != active)
+    {
+        if(active)
+        {
+            int index = ui->thumbnailsList->currentRow();
+            QString backgroundName = ((QLabel*)ui->thumbnailsList->itemWidget(ui->thumbnailsList->item(index)))->toolTip();
+            ui->stackzone->push(backgroundName);
+        }
+        else
+        {
+            ui->stackzone->removeBottom();
+        }
+        this->backgroundDisplayed = active;
+    }
+}
+
+void Editor::onionPeelings(bool active){
+    if(this->onionDisplayed != active)
+    {
+        if(active)
+        {
+            int index = ui->thumbnailsList->currentRow();
+
+            bool backgroundDisplayedBefore(this->backgroundDisplayed);
+            if(backgroundDisplayedBefore){
+                this->displayBackgroundMovie(false);
+            }
+
+            int min(index-this->peelingsCount);
+            if(min < 0){
+                min = 0;
+            }
+
+            for(int i=index-1;i>=min;i--)
+            {
+                QString imageName(((QLabel*)ui->thumbnailsList->itemWidget(ui->thumbnailsList->item(i)))->toolTip());
+                QString drawImage(drawImageName(imageName)->constData());
+
+                if(QFile(drawImage).exists()){
+                    ui->stackzone->push(drawImage);
+                }
+            }
+
+            if(backgroundDisplayedBefore){
+                this->displayBackgroundMovie(true);
+            }
+        }
+        else
+        {
+            ui->stackzone->removeMiddle();
+
+            if(!this->backgroundDisplayed){
+                ui->stackzone->removeBottom();
+            }
+        }
+        this->onionDisplayed = active;
+    }
+}
+
+void Editor::peelingsNumber(){
+    if(this->onionDisplayed){
+        this->onionPeelings(false);
+        this->onionPeelings(true);
+    }
 }
 
 Editor::~Editor()

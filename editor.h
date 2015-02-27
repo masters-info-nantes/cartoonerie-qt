@@ -32,6 +32,9 @@ public slots:
     void updateAllColor(QColor color);
     void updateAllSize(int size);
     void updateThumbnails();
+    void displayBackgroundMovie(bool active);
+    void onionPeelings(bool active);
+    void peelingsNumber();
 
 private:
     Ui::Editor *ui;
@@ -42,6 +45,11 @@ private:
     QDir dir;
     QDir dirdraw;
     DrawZone *drawzone;
+    bool backgroundDisplayed;
+    bool onionDisplayed;
+    const static int DEFAULT_PEELINGS_COUNT = 3;
+    int peelingsCount;
+
 };
 
 #endif // EDITOR_H
