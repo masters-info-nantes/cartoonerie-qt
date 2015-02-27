@@ -15,6 +15,13 @@ public:
     explicit PenSizePicker(QWidget *parent = 0);
     ~PenSizePicker();
 
+signals:
+    void sizeChanged(int);
+
+public slots:
+    void changeSize(int);
+    void notifySizeChange();
+
 private:
     Ui::PenSizePicker *ui;
 };

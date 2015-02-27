@@ -9,11 +9,17 @@ Editor::Editor(Project *project, QWidget *parent) :
 {
     ui->setupUi(this);
     this->drawzone = new DrawZone(800,500);
+    this->drawzone->setPenWidth(1);
 
     connect(ui->tools, SIGNAL(currentChanged(int)), this, SLOT(updateTool(int)));
 
     connect(ui->traitColor, SIGNAL(colorChanged(QColor)), this, SLOT(updateAllColor(QColor)));
     connect(ui->penColor, SIGNAL(colorChanged(QColor)), this, SLOT(updateAllColor(QColor)));
+
+    connect(ui->traitSize, SIGNAL(sizeChanged(int)), this, SLOT(updateAllSize(int)));
+    connect(ui->penSize, SIGNAL(sizeChanged(int)), this, SLOT(updateAllSize(int)));
+    connect(ui->eraserSize, SIGNAL(sizeChanged(int)), this, SLOT(updateAllSize(int)));
+
 
     this->project = project;
     currentIndex=0;
@@ -98,6 +104,19 @@ void Editor::updateAllColor(QColor color){
     this->drawzone->setPenColor(color);
     ui->penColor->changeColor(color);
     ui->traitColor->changeColor(color);
+}
+
+void Editor::updateAllSize(int size){
+    this->drawzone->setPenWidth(1);
+    if(size == 1)
+        this->drawzone->setPenWidth(3);
+    if(size == 2)
+        this->drawzone->setPenWidth(8);
+    if(size == 3)
+        this->drawzone->setPenWidth(15);
+    ui->penSize->changeSize(size);
+    ui->traitSize->changeSize(size);
+    ui->eraserSize->changeSize(size);
 }
 
 void Editor::saveCurrentDraw(){

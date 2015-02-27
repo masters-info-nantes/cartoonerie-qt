@@ -8,5 +8,6 @@
         <file>images/tool-pencil.png</file>
         <file>images/tool-rubberpointer.png</file>
         <file>images/color_wheel.png</file>
+        <file>images/point.png</file>
     </qresource>
 </RCC>

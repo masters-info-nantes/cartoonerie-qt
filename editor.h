@@ -27,6 +27,7 @@ public slots:
     void saveCurrentDraw();
     void updateTool(int index);
     void updateAllColor(QColor color);
+    void updateAllSize(int size);
 
 private:
     Ui::Editor *ui;
