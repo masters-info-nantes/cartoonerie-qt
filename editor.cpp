@@ -75,6 +75,7 @@ Editor::Editor(Project *project, QWidget *parent) :
 
 void Editor::thumbClick(int index){
     index--;
+    this->updateThumbnails();
     this->currentIndex=index;
     this->saveCurrentDraw();
     ui->stackzone->removeAll();
@@ -95,6 +96,36 @@ void Editor::thumbClick(int index){
     ui->stackzone->removeAll();
     ui->stackzone->push(this->drawzone);
 
+}
+
+void Editor::updateThumbnails(){
+    QDir dir(project->getProjectDir().absolutePath()+"/drawings");
+    QStringList files(dir.entryList());
+
+    for(int i = 0; i < files.length(); i++){
+        QString file(files.at(i));
+        if(file == "." || file == ".." || file.endsWith(".draw.png")){
+            continue;
+        }
+
+        QLabel* thumbLabel = new QLabel();
+        thumbLabel->setAlignment(Qt::AlignCenter);
+        thumbLabel->setToolTip(dir.absolutePath() + "/" + file);
+
+        QPixmap* thumbFull = new QPixmap(dir.absolutePath() + "/" + file);
+        QPixmap thumbScaled(thumbFull->scaledToHeight(100));
+
+        thumbLabel->setPixmap(thumbScaled);
+        thumbLabel->setMinimumSize(QSize(thumbScaled.width(), thumbScaled.height()));
+
+        QListWidgetItem* listItem = new QListWidgetItem(ui->thumbnailsList);
+        listItem->setSizeHint(QSize(thumbLabel->minimumWidth()+ 30, thumbLabel->minimumHeight()));
+
+        ui->thumbnailsList->addItem(listItem);
+        ui->thumbnailsList->setItemWidget(listItem, thumbLabel);
+
+        delete thumbFull;// not use after
+    }
 }
 
 void Editor::updateTool(int index){
@@ -155,7 +186,7 @@ void Editor::exportDrawWithMovie(){
     command.start("avconv", args);
     command.waitForFinished(1000*1000); // 1000sec, otherwise it cuts itself
 
-    QMessageBox::information(this, "Export of the drawings", "La vidéo a été générée à partir des dessins avec succès");
+    QMessageBox::information(this, "Export of the drawings", "The video was generated from the drawings with success");
 }
 
 Editor::~Editor()

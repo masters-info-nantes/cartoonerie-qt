@@ -31,6 +31,7 @@ public slots:
     void updateTool(int index);
     void updateAllColor(QColor color);
     void updateAllSize(int size);
+    void updateThumbnails();
 
 private:
     Ui::Editor *ui;
