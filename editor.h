@@ -6,6 +6,7 @@
 #include "drawzone.h"
 #include "colorpicker.h"
 #include "pensizepicker.h"
+#include <QLabel>
 
 namespace Ui {
 class Editor;
@@ -22,12 +23,17 @@ public:
 public slots:
     void close_project();
     void thumbClick(int index);
+    void saveCurrentDraw();
 
 private:
     Ui::Editor *ui;
     Project* project;
     ColorPicker* colorPicker;
     PenSizePicker* PenSizePicker;
+    int currentIndex;
+    QDir dir;
+    QDir dirdraw;
+    DrawZone *drawzone;
 };
 
 #endif // EDITOR_H
