@@ -6,6 +6,7 @@
 #include "drawzone.h"
 #include "colorpicker.h"
 #include "pensizepicker.h"
+#include <QColor>
 #include <QLabel>
 
 namespace Ui {
@@ -25,6 +26,7 @@ public slots:
     void thumbClick(int index);
     void saveCurrentDraw();
     void updateTool(int index);
+    void updateAllColor(QColor color);
 
 private:
     Ui::Editor *ui;

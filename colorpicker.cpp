@@ -12,15 +12,19 @@ ColorPicker::ColorPicker(QWidget *parent) :
 
 void ColorPicker::openDialog()
 {
-    qDebug("sdf");
     colorPalette = new QColorDialog();
     colorPalette->show();
     QObject::connect(colorPalette, SIGNAL(colorSelected(QColor)), this, SLOT(changeColor(QColor)));
+    QObject::connect(colorPalette, SIGNAL(colorSelected(QColor)), this, SLOT(notifyColorChange(QColor)));
 }
 
 void ColorPicker::changeColor(QColor color)
 {
     ui->color->setStyleSheet("background-color:"+color.name()+";");
+}
+
+void ColorPicker::notifyColorChange(QColor color){
+    emit colorChanged(color);
 }
 
 ColorPicker::~ColorPicker()

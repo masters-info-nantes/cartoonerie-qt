@@ -12,6 +12,9 @@ Editor::Editor(Project *project, QWidget *parent) :
 
     connect(ui->tools, SIGNAL(currentChanged(int)), this, SLOT(updateTool(int)));
 
+    connect(ui->traitColor, SIGNAL(colorChanged(QColor)), this, SLOT(updateAllColor(QColor)));
+    connect(ui->penColor, SIGNAL(colorChanged(QColor)), this, SLOT(updateAllColor(QColor)));
+
     this->project = project;
     currentIndex=0;
     connect(ui->actionClose_Project, SIGNAL(triggered()), this, SLOT(close_project()));
@@ -89,6 +92,12 @@ void Editor::thumbClick(int index){
 
 void Editor::updateTool(int index){
     this->drawzone->setTool(index);
+}
+
+void Editor::updateAllColor(QColor color){
+    this->drawzone->setPenColor(color);
+    ui->penColor->changeColor(color);
+    ui->traitColor->changeColor(color);
 }
 
 void Editor::saveCurrentDraw(){

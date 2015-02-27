@@ -17,9 +17,13 @@ public:
     explicit ColorPicker(QWidget *parent = 0);
     ~ColorPicker();
 
+signals:
+    void colorChanged(QColor);
+
 public slots:
     void openDialog();
     void changeColor(QColor color);
+    void notifyColorChange(QColor color);
 
 private:
     Ui::ColorPicker *ui;
