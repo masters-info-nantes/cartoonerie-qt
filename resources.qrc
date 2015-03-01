@@ -9,5 +9,7 @@
         <file>images/tool-rubberpointer.png</file>
         <file>images/color_wheel.png</file>
         <file>images/point.png</file>
+        <file>images/maps-icon.png</file>
+        <file>images/video-camera-icon.png</file>
     </qresource>
 </RCC>
